@@ -31,6 +31,7 @@ import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.os.ParcelUuid;
 import java.nio.charset.Charset;
+import android.text.TextUtils;
 
 
 /**
@@ -46,7 +47,7 @@ import java.nio.charset.Charset;
     nonVisible = true,
     iconName = "images/bluetooth.png")
 @SimpleObject
-@UsesPermissions(permissionNames = "android.permission.BLUETOOTH, " + "android.permission.BLUETOOTH_ADMIN")
+@UsesPermissions(permissionNames = "android.permission.BLUETOOTH, " + "android.permission.BLUETOOTH_ADMIN" + "android.permission.ACCESS_COARSE_LOCATION")
 
 public class BluetoothLE extends AndroidNonvisibleComponent implements Component {
 
@@ -117,22 +118,32 @@ public class BluetoothLE extends AndroidNonvisibleComponent implements Component
   private static final long SCAN_PERIOD = 5000;
   private String advertisementScanResult = "";
 
-  // TODO: Cristhian - BLE Advertisemetn testing
+  // TODO: Cristhian - BLE Advertisement testing
   private ScanCallback mScanCallback = new ScanCallback() {
     @Override
     public void onScanResult(int callbackType, ScanResult result) {
-        super.onScanResult(callbackType, result);
-        if( result == null
-                || result.getDevice() == null) // || TextUtils.isEmpty(result.getDevice().getName())
-            return;
- 
-        StringBuilder builder = new StringBuilder( result.getDevice().getName() );
- 
-        builder.append("\n").append(new String(result.getScanRecord().getServiceData(result.getScanRecord().getServiceUuids().get(0)), Charset.forName("UTF-8")));
-        
-        // TODO: return builder.toString() so that user can use it
-        advertisementScanResult = builder.toString();
-        // mText.setText(builder.toString());
+      super.onScanResult(callbackType, result);
+      if( result == null
+              || result.getDevice() == null || TextUtils.isEmpty(result.getDevice().getName()))
+          return;
+
+      StringBuilder builder = new StringBuilder( result.getDevice().getName() );
+      LogMessage("FOUND DEVICE: " + result.getDevice(), "i");
+      LogMessage("" + result.getScanRecord(), "i");
+      LogMessage("" + result.getScanRecord().getServiceUuids().get(0), "i");
+
+      LogMessage("record service data" + result.getScanRecord().getServiceData(), "i");
+      // LogMessage("recurd uuids " + result.getScanRecord().getServiceData(result.getScanRecord().getServiceUuids(), "i");
+
+      // NOTE: line below prints out null
+      LogMessage("" + result.getScanRecord().getServiceData(result.getScanRecord().getServiceUuids().get(0)), "i");
+      builder.append("\n").append(new String(result.getScanRecord().getServiceData(result.getScanRecord().getServiceUuids().get(0)), Charset.forName("UTF-8")));
+      
+
+
+      // TODO: return builder.toString() so that user can use it
+      advertisementScanResult = builder.toString();
+      // mText.setText(builder.toString());
     }
  
     @Override

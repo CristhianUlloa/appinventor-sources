@@ -6379,9 +6379,41 @@ public interface OdeMessages extends Messages {
   @Description("")
   String StartAdvertisingMethods();
 
+  @DefaultMessage("serviceUuid")    
+  @Description("name of the service UUID parameter")    
+  String serviceUuidParams();
+
+  @DefaultMessage("inData")   
+  @Description("name of the StartAdvertising input data parameter")   
+  String inDataParams();
+
   @DefaultMessage("ScanAdvertisements")
   @Description("")
   String ScanAdvertisementsMethods();
+
+  @DefaultMessage("scanPeriod")   
+  @Description("name of ScanAdvertisements parameter")    
+  String scanPeriodParams();
+
+  @DefaultMessage("GetDeviceName")    
+  @Description("")    
+  String GetDeviceNameProperties();
+
+  @DefaultMessage("GetDeviceAddress")   
+  @Description("")    
+  String GetDeviceAddressProperties();
+
+  @DefaultMessage("GetDeviceServices")    
+  @Description("")    
+  String GetDeviceServicesProperties();
+
+  @DefaultMessage("GetAdvertisementData")   
+  @Description("")    
+  String GetAdvertisementDataMethods();
+  
+  @DefaultMessage("IsDeviceAdvertising")    
+  @Description("")    
+  String IsDeviceAdvertisingProperties();
 
   @DefaultMessage("StopAdvertising")
   @Description("")

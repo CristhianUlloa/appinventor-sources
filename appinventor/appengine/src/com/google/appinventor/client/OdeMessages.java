@@ -6383,6 +6383,10 @@ public interface OdeMessages extends Messages {
   @Description("name of the service UUID parameter")    
   String serviceUuidParams();
 
+  @DefaultMessage("deviceAddress")
+  @Description("name of the bluetooth address parameter")
+  String deviceAddressParams();
+
   @DefaultMessage("inData")   
   @Description("name of the StartAdvertising input data parameter")   
   String inDataParams();
@@ -6395,22 +6399,30 @@ public interface OdeMessages extends Messages {
   @Description("name of ScanAdvertisements parameter")    
   String scanPeriodParams();
 
-  @DefaultMessage("GetDeviceName")    
+  @DefaultMessage("GetAdvertiserNames")    
   @Description("")    
-  String GetDeviceNameProperties();
+  String GetAdvertiserNamesProperties();
 
-  @DefaultMessage("GetDeviceAddress")   
+  @DefaultMessage("GetAdvertiserAddresses")   
   @Description("")    
-  String GetDeviceAddressProperties();
+  String GetAdvertiserAddressesProperties();
 
-  @DefaultMessage("GetDeviceServices")    
+  @DefaultMessage("GetAdvertiserServiceUuids")    
   @Description("")    
-  String GetDeviceServicesProperties();
+  String GetAdvertiserServiceUuidsMethods();
 
   @DefaultMessage("GetAdvertisementData")   
   @Description("")    
   String GetAdvertisementDataMethods();
-  
+
+  @DefaultMessage("GetAdvertiserAddress")   
+  @Description("")    
+  String GetAdvertiserAddressMethods(); 
+
+  @DefaultMessage("deviceName")   
+  @Description("name of variable representing the name of a bluetooth device")    
+  String deviceNameParams();
+
   @DefaultMessage("IsDeviceAdvertising")    
   @Description("")    
   String IsDeviceAdvertisingProperties();
@@ -6427,9 +6439,9 @@ public interface OdeMessages extends Messages {
   @Description("")
   String AdvertisementScanResultProperties();
 
-  @DefaultMessage("ScanPeriod")
+  @DefaultMessage("AdvertisementScanPeriod")
   @Description("")
-  String ScanPeriodProperties();
+  String AdvertisementScanPeriodProperties();
 
   @DefaultMessage("ByteValueRead")
   @Description("")
